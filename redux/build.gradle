@@ -20,15 +20,13 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
     }
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-
-                groupId = 'com.acv'
-                artifactId = 'redux'
-                version = '0.1.0'
-            }
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'com.acv'
+            artifactId 'redux'
+            version '0.1.0'
+            from components.java
         }
     }
 }

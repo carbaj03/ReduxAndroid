@@ -2,7 +2,6 @@ plugins {
     id 'java-library'
     id 'org.jetbrains.kotlin.jvm'
     id 'com.google.devtools.ksp'
-    id 'maven-publish'
 }
 
 java {
@@ -26,18 +25,5 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
     kotlinOptions {
         freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
         freeCompilerArgs += "-Xcontext-receivers"
-    }
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-
-                groupId = 'com.acv'
-                artifactId = 'arrow'
-                version = '0.1.0'
-            }
-        }
     }
 }
