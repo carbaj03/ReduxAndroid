@@ -1,0 +1,43 @@
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'com.google.devtools.ksp'
+    id 'maven-publish'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation project(':redux')
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3"
+
+    implementation "io.arrow-kt:arrow-core:$arrowVersion"
+    implementation "io.arrow-kt:arrow-optics:$arrowVersion"
+    implementation "io.arrow-kt:arrow-fx-coroutines:$arrowVersion"
+    ksp "io.arrow-kt:arrow-optics-ksp-plugin:$arrowVersion"
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+        freeCompilerArgs += "-Xcontext-receivers"
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+
+                groupId = 'com.acv'
+                artifactId = 'arrow'
+                version = '0.1.0'
+            }
+        }
+    }
+}

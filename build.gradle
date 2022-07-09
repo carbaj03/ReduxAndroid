@@ -1,0 +1,14 @@
+buildscript {
+    ext {
+        compose_ui_version = '1.3.0-alpha01'
+        ext.arrowVersion = '1.1.3-alpha.25'
+    }
+}
+
+plugins {
+    id 'com.android.application' version '7.4.0-alpha08' apply false
+    id 'com.android.library' version '7.4.0-alpha08' apply false
+    id 'org.jetbrains.kotlin.android' version '1.7.0' apply false
+    id 'org.jetbrains.kotlin.jvm' version '1.7.0' apply false
+    id 'com.google.devtools.ksp' version("1.7.0-1.0.6") apply(false)
+}
